@@ -1,17 +1,13 @@
 import Link from 'next/link';
+import axios from 'axios';
 
-const HomePage = () => {
-  const mokCharacters = [
-    { id: 1, name: "Rick" },
-    { id: 2, name: "Morty" }
-  ];
-
+const HomePage = ({ characters }) => {
   return (
     <div>
       <h1>Rick & Morty DataBase</h1>
       <div>
         <ul>
-          {mokCharacters.map(hero => {
+          {characters.map(hero => {
             return (
               <li key={hero.id}>
                 <Link href={`character/${hero.id}`}>
@@ -27,3 +23,11 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+export async function getServerSideProps(context) {
+  const response = await axios.get('https://rickandmortyapi.com/api/character');
+  
+  return {
+    props: { characters: response?.data?.results },
+  }
+}

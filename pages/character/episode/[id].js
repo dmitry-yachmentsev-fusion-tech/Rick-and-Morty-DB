@@ -1,11 +1,20 @@
-import { useRouter } from 'next/router';
+import axios from 'axios';
 
-export default function() {
-  const { query } = useRouter();
+export default function({ episode }) {
 
   return (
     <div>
-      <h1>Episode info with id{query.id}</h1>
+      <h1>Episode {episode.name}</h1>
     </div>
   )
+};
+
+export async function getServerSideProps({ params }) {
+  const episode = await axios.get(`https://rickandmortyapi.com/api/episode/${params.id}`);
+
+  return {
+    props: {
+      episode: episode.data,
+    }
+  }
 }
