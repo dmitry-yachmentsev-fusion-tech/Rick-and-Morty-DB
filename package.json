@@ -1,0 +1,30 @@
+{
+  "name": "Rick-and-Morty-DB",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmitry-yachmentsev-fusion-tech/Rick-and-Morty-DB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmitry-yachmentsev-fusion-tech/Rick-and-Morty-DB/issues"
+  },
+  "homepage": "https://github.com/dmitry-yachmentsev-fusion-tech/Rick-and-Morty-DB#readme",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.3",
+    "antd": "^4.22.4",
+    "axios": "^0.27.2",
+    "emotion": "^11.0.0",
+    "next": "^12.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
