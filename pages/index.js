@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const HomePage = ({ characters }) => {
+  const { query }  = useRouter();
+  console.log(query);
   return (
     <div>
       <h1>Rick & Morty DataBase</h1>
