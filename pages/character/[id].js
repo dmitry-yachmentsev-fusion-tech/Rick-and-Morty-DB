@@ -3,12 +3,13 @@ import Episodes from '../../components/Episodes';
 import axios from 'axios';
 
 export default function ({ character, episodes }) {
-  const { query } = useRouter();
+  const router = useRouter();
+  console.log('character', router);
   return (
     <div>
       <img src={`${character.image}`} />
       
-      <h1>Character {character.name} info with id {query.id}</h1>
+      <h1>Character {character.name} info with id {router.query.id}</h1>
       <Episodes episodes={episodes} />
     </div>
   )

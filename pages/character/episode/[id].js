@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export default function({ episode }) {
-
+  const router = useRouter();
+  console.log('episode', router);
   return (
     <div>
       <h1>Episode {episode.name}</h1>
