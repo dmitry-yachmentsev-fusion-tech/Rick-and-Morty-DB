@@ -30,8 +30,6 @@ const HomePage = ({ charactersInfo, prevPage, nextPage, pages }) => {
     }
   }
 
-
-
   const onPrev = async () => {
     setIsDisabledBtn(true);
     setCurrentPage(currentPage - 1);
@@ -44,21 +42,24 @@ const HomePage = ({ charactersInfo, prevPage, nextPage, pages }) => {
 
   return (
     <div>
-      <h1>Rick & Morty DataBase</h1>
+        <h1>Rick & Morty DataBase</h1>
       <div className={classes.wrapper}>
-        <h2>page {currentPage | 1} {!!pages && `of ${pages}`}</h2>
+        <div className={classes.pagiWrapper}>
+          <h2>page {currentPage || 1} {!!pages && `of ${pages}`}</h2>
+          <Pagination
+            links={pagiLinks} 
+            onPrev={onPrev}
+            onNext={onNext}
+            currentPage={currentPage}
+            disabled={isDisabledBtn}
+            customClass={classes.pagi}
+          />
+        </div>
         <ul>
           {characters && characters.map(hero => {
             return <Character key={hero.id} hero={hero} />;
           })}
         </ul>
-        <Pagination
-          links={pagiLinks} 
-          onPrev={onPrev}
-          onNext={onNext}
-          currentPage={currentPage}
-          disabled={isDisabledBtn}
-        />
       </div>
     </div>
   )

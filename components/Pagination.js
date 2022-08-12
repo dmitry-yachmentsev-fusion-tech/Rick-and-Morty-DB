@@ -5,11 +5,28 @@ const Pagination = ({
   onPrev, 
   onNext, 
   disabled,
+  customClass
 }) => {
   return (
-    <div className={classes.wrapper}>
-      {links?.prev && <button onClick={onPrev} disabled={disabled}>Prev</button>}
-      {links?.next && <button onClick={onNext} disabled={disabled}>Next</button>}
+    <div className={`${classes.wrapper} ${customClass}`}>
+      {links?.prev && (
+      <button 
+        onClick={onPrev}
+        disabled={disabled}
+        className={classes.pagiBtn}
+      >
+        Prev
+      </button>
+      )}
+      {links?.next && (
+        <button 
+          onClick={onNext} 
+          disabled={disabled}
+          className={classes.pagiBtn}
+        >
+          Next
+        </button>
+      )}
     </div>
   )
 };

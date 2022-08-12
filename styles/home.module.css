@@ -1,5 +1,11 @@
 .wrapper {
   padding: 0 20px;
 }
+.pagiWrapper {
+  display: flex;
+  align-items: center;
+}
+
 .pagi {
+  margin-left: 10px;
 }
