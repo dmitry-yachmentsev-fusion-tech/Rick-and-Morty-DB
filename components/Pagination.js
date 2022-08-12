@@ -1,13 +1,15 @@
-import axios from 'axios';
-import Link from 'next/link';
+import classes from '../styles/pagination.module.css';
 
-const Pagination = ({ prevLink, nextLink, onPrev, onNext, currentPage }) => {
-
-  console.log(currentPage);
+const Pagination = ({ 
+  links,
+  onPrev, 
+  onNext, 
+  disabled,
+}) => {
   return (
-    <div style={{padding: '20px', border: '3px solid purple', display: 'flex'}}>
-      {/* {prevLink && <button onClickhref={`/?page=${currentPage}`}>Prev</button>} */}
-      {nextLink && <button onClick={onNext}>Next</button>}
+    <div className={classes.wrapper}>
+      {links?.prev && <button onClick={onPrev} disabled={disabled}>Prev</button>}
+      {links?.next && <button onClick={onNext} disabled={disabled}>Next</button>}
     </div>
   )
 };

@@ -4,7 +4,6 @@ import axios from 'axios';
 
 export default function ({ character, episodes }) {
   const router = useRouter();
-  console.log('character', router);
   return (
     <div>
       <img src={`${character.image}`} />
