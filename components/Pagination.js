@@ -1,4 +1,5 @@
 import classes from '../styles/pagination.module.css';
+import CustomButton from '../UI/buttons/CustomButton';
 
 const Pagination = ({ 
   links,
@@ -10,22 +11,18 @@ const Pagination = ({
   return (
     <div className={`${classes.wrapper} ${customClass}`}>
       {links?.prev && (
-      <button 
-        onClick={onPrev}
-        disabled={disabled}
-        className={classes.pagiBtn}
-      >
-        Prev
-      </button>
+        <CustomButton 
+          text="Prev" 
+          onClick={onPrev} 
+          isDisabled={disabled}
+        />
       )}
       {links?.next && (
-        <button 
+        <CustomButton 
+          text="Next" 
           onClick={onNext} 
-          disabled={disabled}
-          className={classes.pagiBtn}
-        >
-          Next
-        </button>
+          isDisabled={disabled}
+        />
       )}
     </div>
   )
