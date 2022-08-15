@@ -1,11 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 
+import classes from '../styles/components/episodes.module.css';
+
 const Episodes = ({ episodes }) => {
   return (
-    <div style={{border: '2px solid greenyellow'}}>
-      <h1>Episodes</h1>
-      <div style={{display: 'flex', backgroundColor: 'yellow'}}>
+    <div className={classes.wrapper}>
+      <h1 className={classes.title}>Episodes</h1>
+      <div className={classes.content}>
         <ul>
           {!!episodes.length && episodes.map(item => {
             return (

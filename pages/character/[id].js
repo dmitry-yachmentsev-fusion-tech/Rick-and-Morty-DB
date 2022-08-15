@@ -1,14 +1,46 @@
 import { useRouter } from 'next/router';
-import Episodes from '../../components/Episodes';
 import axios from 'axios';
+
+import Episodes from '../../components/Episodes';
+import classes from '../../styles/character.module.css'
 
 export default function ({ character, episodes }) {
   const router = useRouter();
+  const formattedCharacter = Object.entries(character);
+  const defaultParameters = ['name', 'status', 'gender', 'location', 'episode',];
+
   return (
-    <div>
-      <img src={`${character.image}`} />
-      
-      <h1>Character {character.name} info with id {router.query.id}</h1>
+    <div className={classes.wrapper}>
+      <div className={classes.characterWrapper}>
+        <div className={classes.infoWrapper}>
+          <h1 className={classes.title}>{character.name} with id {router.query.id}</h1>
+          <ul>
+            {formattedCharacter.map(([param, value], index) => {
+              const parameter = defaultParameters.includes(param);
+              if(parameter) {
+                let formattedValue = value;
+
+                if(param === 'location') {
+                  formattedValue = value?.name;
+                } else if(param === 'episode') {
+                  formattedValue = value.length;
+                  param = 'episodes quantity';
+                }
+
+                return (
+                  <li key={index} className={classes.parameterRow}>
+                    <p className={classes.parameterText}>{param}:</p>
+                    <p className={classes.parameterValue}>{formattedValue}</p>
+                  </li>
+                )
+              }
+            })}
+          </ul>
+        </div>
+        <div className={classes.imageWrapper}>
+          <img className={classes.image} src={`${character.image}`} />
+        </div>
+      </div>
       <Episodes episodes={episodes} />
     </div>
   )

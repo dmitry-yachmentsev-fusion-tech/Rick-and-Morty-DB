@@ -1,0 +1,16 @@
+.wrapper {
+  border: 3px solid yellowgreen;
+  border-radius: 4px;
+  background-color: rgb(54, 0, 89)
+}
+
+.wrapper + .wrapper {
+  margin-top: 10px;
+}
+
+.link {
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  color: greenyellow;
+}

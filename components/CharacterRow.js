@@ -1,8 +1,9 @@
 import Link from 'next/link'
 
-import classes from '../styles/character.module.css';
+import classes from '../styles/characterRow.module.css';
 
-const Character = ({ hero }) => {
+const CharacterRow = ({ hero }) => {
+  console.log(hero);
   return (
     <li className={classes.wrapper}>
       <Link href={`character/${hero.id}`}>
@@ -12,4 +13,4 @@ const Character = ({ hero }) => {
   )
 };
 
-export default Character;
+export default CharacterRow;

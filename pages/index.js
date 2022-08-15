@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Pagination from '../components/Pagination';
 import classes from '../styles/home.module.css';
-import Character from '../components/Character';
+import CharacterRow from '../components/CharacterRow';
 import { getFilteredCharacters } from '../API/characters/charactersService'
 
 const HomePage = ({ charactersInfo, prevPage, nextPage, pages }) => {
@@ -57,7 +57,7 @@ const HomePage = ({ charactersInfo, prevPage, nextPage, pages }) => {
         </div>
         <ul>
           {characters && characters.map(hero => {
-            return <Character key={hero.id} hero={hero} />;
+            return <CharacterRow key={hero.id} hero={hero} />;
           })}
         </ul>
       </div>
