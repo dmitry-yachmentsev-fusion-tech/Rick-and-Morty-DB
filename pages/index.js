@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import Pagination from '../components/Pagination';
-import classes from '../styles/home.module.css';
-import CharacterRow from '../components/CharacterRow';
+import classes from '../styles/index.module.css';
+import Row from '../components/Row';
 import { getFilteredCharacters } from '../API/characters/charactersService'
 
 const HomePage = ({ charactersInfo, prevPage, nextPage, pages }) => {
@@ -41,26 +41,24 @@ const HomePage = ({ charactersInfo, prevPage, nextPage, pages }) => {
   };
 
   return (
-    <div>
-        <h1>Rick & Morty DataBase</h1>
-      <div className={classes.wrapper}>
-        <div className={classes.pagiWrapper}>
-          <h2>page {currentPage || 1} {!!pages && `of ${pages}`}</h2>
-          <Pagination
-            links={pagiLinks} 
-            onPrev={onPrev}
-            onNext={onNext}
-            currentPage={currentPage}
-            disabled={isDisabledBtn}
-            customClass={classes.pagi}
-          />
-        </div>
-        <ul>
-          {characters && characters.map(hero => {
-            return <CharacterRow key={hero.id} hero={hero} />;
-          })}
-        </ul>
+    <div className={classes.wrapper}>
+      <h1>Rick & Morty DataBase</h1>
+      <div className={classes.pagiWrapper}>
+        <Pagination
+          links={pagiLinks} 
+          onPrev={onPrev}
+          onNext={onNext}
+          currentPage={currentPage}
+          disabled={isDisabledBtn}
+          customClass={classes.pagi}
+          pages={pages}
+        />
       </div>
+      <ul>
+        {characters && characters.map(hero => {
+          return <Row key={hero.id} item={hero} route={`character/${hero.id}`} />;
+        })}
+      </ul>
     </div>
   )
 };

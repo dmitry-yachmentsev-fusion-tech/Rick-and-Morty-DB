@@ -1,10 +1,14 @@
 .wrapper {
-  width: 150px;
   display: flex;
-  border-bottom: 2px solid orange;
-  border-radius: 4px;
   padding: 10px 20px;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.infoText {
+  width: 150px;
+  color: orange;
+  font-size: 20px;
 }
 
 .pagiBtn {
@@ -21,4 +25,11 @@
 
 .pagiBtn + .pagiBtn {
   margin-left: 10px;
+}
+
+.buttonsWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 20px;
+  width: 150px;
 }

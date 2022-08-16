@@ -2,18 +2,18 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 
 import Episodes from '../../components/Episodes';
-import classes from '../../styles/character.module.css'
+import classes from '../../styles/components/character.module.css'
 
 export default function ({ character, episodes }) {
   const router = useRouter();
   const formattedCharacter = Object.entries(character);
-  const defaultParameters = ['name', 'status', 'gender', 'location', 'episode',];
+  const defaultParameters = ['status', 'gender', 'location', 'episode',];
 
   return (
     <div className={classes.wrapper}>
       <div className={classes.characterWrapper}>
         <div className={classes.infoWrapper}>
-          <h1 className={classes.title}>{character.name} with id {router.query.id}</h1>
+          <h1 className={classes.title}>{character.name}</h1>
           <ul>
             {formattedCharacter.map(([param, value], index) => {
               const parameter = defaultParameters.includes(param);

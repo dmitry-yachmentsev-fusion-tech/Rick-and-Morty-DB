@@ -1,4 +1,4 @@
-import classes from '../styles/pagination.module.css';
+import classes from '../styles/components/pagination.module.css';
 import CustomButton from '../UI/buttons/CustomButton';
 
 const Pagination = ({ 
@@ -6,24 +6,29 @@ const Pagination = ({
   onPrev, 
   onNext, 
   disabled,
-  customClass
+  customClass,
+  currentPage,
+  pages
 }) => {
   return (
     <div className={`${classes.wrapper} ${customClass}`}>
-      {links?.prev && (
-        <CustomButton 
-          text="Prev" 
-          onClick={onPrev} 
-          isDisabled={disabled}
-        />
-      )}
-      {links?.next && (
-        <CustomButton 
-          text="Next" 
-          onClick={onNext} 
-          isDisabled={disabled}
-        />
-      )}
+      <p className={classes.infoText}>page {currentPage || 1} {!!pages && `of ${pages}`}</p>
+      <div className={classes.buttonsWrapper}>
+        {links?.prev && (
+          <CustomButton 
+            text="Prev" 
+            onClick={onPrev} 
+            isDisabled={disabled}
+          />
+        )}
+        {links?.next && (
+          <CustomButton 
+            text="Next" 
+            onClick={onNext} 
+            isDisabled={disabled}
+          />
+        )}
+      </div>
     </div>
   )
 };

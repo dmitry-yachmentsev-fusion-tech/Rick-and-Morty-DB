@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
+import Row from '../components/Row'
 import classes from '../styles/components/episodes.module.css';
 
 const Episodes = ({ episodes }) => {
@@ -10,13 +11,8 @@ const Episodes = ({ episodes }) => {
       <div className={classes.content}>
         <ul>
           {!!episodes.length && episodes.map(item => {
-            return (
-              <li key={item.id}>
-                <Link href={`episode/${item.id}`}>
-                  <a>{item.name}</a>
-                </Link>
-              </li>
-            )
+            console.log(item);
+            return <Row key={item.id} item={item} route={`episode/${item.id}`} />;
           })}
         </ul>
       </div>

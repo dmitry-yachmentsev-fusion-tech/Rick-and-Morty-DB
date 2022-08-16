@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: rgb(24, 11, 37);
+  min-height: 100vh;
 }
 
 .characterWrapper {
@@ -10,18 +10,20 @@
 
 .title {
   color: orange;
+  text-align: center;
 }
 
 .infoWrapper {
+  border-bottom: 2px solid rgb(14, 120, 132);
 }
 
 .parameterRow {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid greenyellow;
 }
 
 .parameterRow + .parameterRow {
+  border-top: 1px solid greenyellow;
   margin-top: 5px;
 }
 
@@ -36,9 +38,11 @@
 
 .imageWrapper {
   margin-left: 20px;
+  max-height: 300px;
 }
 
 .image {
+  object-fit: contain;
   display: block;
   width: 100%;
   height: 100%;

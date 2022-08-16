@@ -1,6 +1,7 @@
 body {
+  background-color: rgb(24, 11, 37);
   padding: 0;
-  margin: 0;
+  margin: 0 200px;
 }
 
 ul {
@@ -11,6 +12,11 @@ ul {
 
 h1, h2, h3 {
   margin: 0;
+  color: orange;
+}
+
+p {
+  color: #fff;
 }
 
 button {
