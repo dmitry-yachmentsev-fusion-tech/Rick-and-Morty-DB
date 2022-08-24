@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Icon from '../Icon';
-console.log(Icon);
 
 const Svg = styled(Icon)`
   width: 24px; 

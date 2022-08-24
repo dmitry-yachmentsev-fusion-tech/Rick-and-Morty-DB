@@ -10,7 +10,6 @@ const Episodes = ({ episodes }) => {
       <div>
         <ul>
           {!!episodes.length && episodes.map((item, index) => {
-            console.log(item);
             return <Row 
               key={item.id} 
               item={item} 
