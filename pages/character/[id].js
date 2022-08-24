@@ -24,11 +24,12 @@ const StyledCharacter = styled.div`
   .parameterRow {
     display: flex;
     align-items: center;
+    margin-top: 25px;
+    padding-top: 5px;
   }
   
   .parameterRow + .parameterRow {
     border-top: 1px solid greenyellow;
-    margin-top: 5px;
   }
   
   .parameterText {
