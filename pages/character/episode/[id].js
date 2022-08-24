@@ -1,10 +1,14 @@
 import axios from 'axios';
 
+import MainWrapper from '../../../components/MainWrapper';
+
 export default function({ episode }) {
   return (
-    <div>
-      <h1>Episode {episode.name}</h1>
-    </div>
+    <MainWrapper>
+      <div>
+        <h1>Episode {episode.name}</h1>
+      </div>
+    </MainWrapper>
   )
 };
 

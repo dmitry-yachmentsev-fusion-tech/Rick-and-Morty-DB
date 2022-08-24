@@ -1,14 +1,26 @@
 import Link from 'next/link'
+import styled from 'styled-components';
 
-import classes from '../styles/row.module.css';
+const StyledRow = styled.li`
+  margin-top: ${(props) => props.isFirst ? '0' : '10px'};
+  border: 3px solid yellowgreen;
+  border-radius: 4px;
 
-const Row = ({ item, route }) => {
+  .itemLink {
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: greenyellow;
+  }
+`
+
+const Row = ({ item, route, isFirst }) => {
   return (
-    <li className={classes.wrapper}>
+    <StyledRow isFirst={isFirst}>
       <Link href={route}>
-        <a className={classes.link}>{item.name}</a>
+        <a className="itemLink">{item.name}</a>
       </Link>
-    </li>
+    </StyledRow>
   )
 };
 

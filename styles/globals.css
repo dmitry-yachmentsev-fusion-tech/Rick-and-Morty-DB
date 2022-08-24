@@ -4,6 +4,11 @@ body {
   margin: 0 200px;
 }
 
+* {
+  box-sizing: border-box;
+  font-family:'Courier New', Courier, monospace;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -15,11 +20,18 @@ h1, h2, h3 {
   color: orange;
 }
 
+a {
+ text-decoration: none;
+}
+
 p {
+  font-size: 14px;
   color: #fff;
+  margin: 0;
 }
 
 button {
+  color: #fff;
   background-color: transparent;
   border: none;
   cursor: pointer;
