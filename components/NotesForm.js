@@ -1,13 +1,15 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 import Input from './Input';
 import Button from './Button';
+import { setNotes } from '../redux/feedback/reducer';
 
 const StyledForm = styled.div`
   margin-top: 50px;
 
-  .form {
+  .wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,35 +45,37 @@ const StyledForm = styled.div`
 `
 const NotesForm = () => {
   const [note, setNote] = useState('');
-  const [questions, setQuestions] = useState([]);
+  const dispatch = useDispatch();
+  const { notes } = useSelector(store => store.feedback);
 
   const createQuestion = (e) => {
     e.preventDefault();
     if (!note) return;
-    setQuestions([...questions, { note, date: new Date().toDateString(), id: Date.now() }])
+    const updatedNotes = [...notes, { text: note, date: new Date().toDateString(), id: Date.now() }];
+    dispatch(setNotes(updatedNotes))
     setNote('');
   };
 
   const deleteQuestion = (id) => {
-    const filteredQuestions = questions.filter(item => item.id !== id);
-    setQuestions(filteredQuestions);
+    const filteredNotes = notes.filter(item => item.id !== id);
+    dispatch(setNotes(filteredNotes))
   };
 
   return (
     <StyledForm>
-      <form className="form" onSubmit={createQuestion}>
-          <Input 
-            value={note} 
-            onChange={(e) => setNote(e.target.value)} 
-            placeholder="Write a notes" 
-          />
-          <Button marginLeft="20" text="Create note" onClick={createQuestion} />
-        </form>
+      <div className="wrapper">
+        <Input
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          placeholder="Write a notes"
+        />
+        <Button marginLeft="20" text="Create note" onClick={createQuestion} />
+      </div>
       <div className="notesWrapper">
-        {questions.map(item => (
+        {notes.map(item => (
           <div key={item.id} className="note">
             <div>
-              <p className="text">{item.note}</p>
+              <p className="text">{item.text}</p>
               <p className="date">{item.date}</p>
             </div>
             <Button text="Delete" onClick={() => deleteQuestion(item.id)} />

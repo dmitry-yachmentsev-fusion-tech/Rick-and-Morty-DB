@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import MainWrapper from '../components/MainWrapper';
 import Input from '../components/Input';
 import Rating from '../components/Rating';
 import NotesForm from '../components/NotesForm';
+import CustomButton from '../components/Button';
+import { setRating, setNotes } from '../redux/feedback/reducer';
 
-const ContactForm = styled.div`
+const ContactForm = styled.form`
   background-color: #fff;
+  height: 100vh;
   margin-top: 50px;
   padding: 20px;
 
@@ -24,6 +28,17 @@ const ContactForm = styled.div`
     margin-top: 20px;
   }
 
+  .input {
+    width: 100%;
+    padding: 15px 10px;
+    border: 1px solid orange;
+    outline: none;
+  }
+
+  .input + .input {
+    margin-top: 20px;
+  }
+
   .ratingWrapper {
     margin-top: 20px;
     display: flex;
@@ -33,27 +48,66 @@ const ContactForm = styled.div`
   .ratingTitle {
     margin-right: 10px;
   }
+
+  .errorWrapper {
+    margin-top: 5px;
+  }
+
+  .error {
+    color: red;
+  }
 `
 
 const ContactMePage = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const dispatch = useDispatch();
+  const { rating, notes } = useSelector(store => store.feedback)
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    reset,
+  } = useForm({
+    mode: 'onBlur',
+  });
+
+  const submitFeedback = data => {
+    const requestPayload = {
+      firstname: data.firstName,
+      lastname: data.lastName,
+      rating,
+      notes,
+    };
+    console.log('requestPayload', requestPayload);
+    dispatch(setRating(null));
+    dispatch(setNotes([]));
+    reset();
+  };
 
   return (
     <MainWrapper>
-      <ContactForm>
+      <ContactForm onSubmit={handleSubmit(submitFeedback)}>
         <div>
           <h1>Contact me</h1>
           <div className="inputsWrapper">
             <Input
-              value={firstName} 
-              onChange={(e) => setFirstName(e.target.value)} 
-              placeholder="Firstname"
+              {...register('firstName', {
+                required: 'firstname is required', 
+                minLength: {
+                  value: 2, 
+                  message: 'Minimum is 2 symbols',
+                }
+              })}
+              errors={errors}
             />
-            <Input 
-              value={lastName} 
-              onChange={(e) => setLastName(e.target.value)} 
-              placeholder="Lastname"
+            <Input
+              {...register("lastName", {
+                required: 'lastname is required', 
+                minLength: {
+                  value: 2,
+                  message: 'Minimum is 2 symbols',
+                }
+              })}
+              errors={errors}
             />
           </div>
         </div>
@@ -62,6 +116,7 @@ const ContactMePage = () => {
           <Rating />
         </div>
         <NotesForm />
+        <CustomButton text="Submit" marginTop="40" />
       </ContactForm>
     </MainWrapper>
   )

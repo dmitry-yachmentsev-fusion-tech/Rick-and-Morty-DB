@@ -5,7 +5,7 @@ const StyledButton = styled.button`
   margin-left: ${({ marginLeft }) => marginLeft}px;
   border: 1px solid yellowgreen;
   border-radius: 4px;
-  padding: 5px 20px 5px 20px;
+  padding: 10px 20px;
   color: orange;
   &:hover {
     background-color: yellowgreen;
@@ -19,7 +19,7 @@ const Button = ({ text, onClick, isDisabled, ...props }) => {
     <StyledButton
       marginLeft={props.marginLeft}
       marginTop={props.marginTop}
-      type="button" 
+      type="submit" 
       onClick={onClick} 
       disabled={isDisabled}
     >

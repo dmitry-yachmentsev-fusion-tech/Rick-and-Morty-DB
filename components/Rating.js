@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -43,6 +43,12 @@ const Rating = () => {
   const { feedback } = useSelector(state => state);
   const [rates, setRates] = useState(initialRates);
 
+  useEffect(() => {
+    if(feedback.rating === null) {
+      setRates(initialRates);
+    }
+  }, [feedback.rating]);
+
   const selectRate = (index) => {
     const selectedRate = rates.find(rate => rate.selected && rate.index === index);
     let initialRates = rates.map(item => {
@@ -73,6 +79,7 @@ const Rating = () => {
       {rates.map(({ index, selected }) => {
         return (
             <StyledRate
+              type="button"
               key={index}
               onClick={() => selectRate(index)}
             >

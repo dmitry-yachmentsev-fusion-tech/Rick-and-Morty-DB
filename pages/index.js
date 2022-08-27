@@ -54,8 +54,9 @@ export default HomePage;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => 
-    async function getServerSideProps(ctx) {
-    const response = await axios.get('https://rickandmortyapi.com/api/character/?page=1');
+  async function getServerSideProps({ query }) {
+    const page = query?.page || 1;
+    const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`);
     return {
       props: { 
         charactersInfo: response?.data,

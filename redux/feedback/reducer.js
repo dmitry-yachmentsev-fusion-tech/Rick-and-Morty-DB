@@ -5,7 +5,7 @@ const initialValues = {
   notes: [
     {
       id: null,
-      note: '',
+      text: '',
       date: '',
     },
   ]
@@ -18,9 +18,12 @@ export const feedbackReducer = createSlice({
     setRating: (state, action) => {
       state.rating = action.payload;
     },
+    setNotes: (state, action) => {
+      state.notes = action.payload;
+    }
   }
 });
 
 export default feedbackReducer.reducer;
 
-export const { setRating } = feedbackReducer.actions;
+export const { setRating, setNotes } = feedbackReducer.actions;
