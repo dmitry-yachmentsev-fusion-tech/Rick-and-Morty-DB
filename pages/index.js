@@ -27,7 +27,7 @@ const HomePage = ({ charactersInfo, prevPage, nextPage, pages }) => {
   }
 
   return (
-    <MainWrapper>
+    <MainWrapper pageTitle="Home page">
       <div>
         <h1>Rick & Morty DataBase</h1>
         <Pagination

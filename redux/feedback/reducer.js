@@ -2,13 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialValues = {
   rating: null,
-  notes: [
-    {
-      id: null,
-      text: '',
-      date: '',
-    },
-  ]
+  notes: [],
 };
 
 export const feedbackReducer = createSlice({

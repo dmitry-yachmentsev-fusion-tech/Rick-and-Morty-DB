@@ -10,7 +10,7 @@ body {
 
 * {
   box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Roboto Slab', sans-serif;
 }
 
 ul {
