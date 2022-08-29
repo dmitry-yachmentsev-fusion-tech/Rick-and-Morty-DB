@@ -1,11 +1,8 @@
-import { useRouter } from 'next/router';
 import axios from 'axios';
 import styled from 'styled-components';
 
 import MainWrapper from '../../components/MainWrapper';
 import Episodes from '../../components/Episodes';
-
-//  min-height: 100vh;
 
 const StyledCharacter = styled.div`
   display: flex;
@@ -55,48 +52,42 @@ const StyledCharacter = styled.div`
 `
 
 export default function ({ character, episodes }) {
-  const router = useRouter();
   const formattedCharacter = Object.entries(character);
   const defaultParameters = ['status', 'gender', 'location', 'episode',];
 
   return (
-    <MainWrapper>
-      {/* <div className={classes.wrapper}> */}
-        <StyledCharacter>
-          <div className="infoWrapper">
-            <h1 className="title">{character.name}</h1>
-            <ul>
-              {formattedCharacter.map(([param, value], index) => {
-                const parameter = defaultParameters.includes(param);
-                if (parameter) {
-                  let formattedValue = value;
+    <MainWrapper pageTitle={`${character.name} from Rick & Morty`}>
+      <StyledCharacter>
+        <div className="infoWrapper">
+          <h1 className="title">{character.name}</h1>
+          <ul>
+            {formattedCharacter.map(([param, value], index) => {
+              const parameter = defaultParameters.includes(param);
+              if (parameter) {
+                let formattedValue = value;
 
-                  if (param === 'location') {
-                    formattedValue = value?.name;
-                  } else if (param === 'episode') {
-                    formattedValue = value.length;
-                    param = 'episodes quantity';
-                  }
-
-                  return (
-                    <li key={index} className="parameterRow">
-                      <p className="parameterText">{param}:</p>
-                      <p className="parameterValue">{formattedValue}</p>
-                    </li>
-                  )
+                if (param === 'location') {
+                  formattedValue = value?.name;
+                } else if (param === 'episode') {
+                  formattedValue = value.length;
+                  param = 'episodes quantity';
                 }
-              })}
-            </ul>
-          </div>
-          <div className="imageWrapper">
-            <img className="image" src={`${character.image}`} />
-          </div>
-        </StyledCharacter>
-        {/* <div className={classes.characterWrapper}> */}
-          
-        {/* </div> */}
-        <Episodes episodes={episodes} />
-      {/* </div> */}
+
+                return (
+                  <li key={index} className="parameterRow">
+                    <p className="parameterText">{param}:</p>
+                    <p className="parameterValue">{formattedValue}</p>
+                  </li>
+                )
+              }
+            })}
+          </ul>
+        </div>
+        <div className="imageWrapper">
+          <img className="image" src={`${character.image}`} />
+        </div>
+      </StyledCharacter>
+      <Episodes episodes={episodes} />
     </MainWrapper>
   )
 }

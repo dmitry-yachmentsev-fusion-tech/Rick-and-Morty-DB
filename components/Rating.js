@@ -12,9 +12,6 @@ const RateWrapper = styled.div`
   justify-content: space-between;
 `
 
-const StyledRate = styled.button`
-`
-
 const initialRates = [
   {
     index: 1,
@@ -78,13 +75,13 @@ const Rating = () => {
     <RateWrapper>
       {rates.map(({ index, selected }) => {
         return (
-            <StyledRate
+            <button
               type="button"
               key={index}
               onClick={() => selectRate(index)}
             >
               <Star fill={selected ? "gold" : "white"} stroke={selected ? "gold" : "black"} />
-            </StyledRate>
+            </button>
         )
       })}
     </RateWrapper>
