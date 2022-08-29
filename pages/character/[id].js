@@ -1,11 +1,8 @@
-import { useRouter } from 'next/router';
 import axios from 'axios';
 import styled from 'styled-components';
 
 import MainWrapper from '../../components/MainWrapper';
 import Episodes from '../../components/Episodes';
-
-//  min-height: 100vh;
 
 const StyledCharacter = styled.div`
   display: flex;
@@ -55,12 +52,11 @@ const StyledCharacter = styled.div`
 `
 
 export default function ({ character, episodes }) {
-  const router = useRouter();
   const formattedCharacter = Object.entries(character);
   const defaultParameters = ['status', 'gender', 'location', 'episode',];
 
   return (
-    <MainWrapper pageTitle="Character page">
+    <MainWrapper pageTitle={`${character.name} from Rick & Morty`}>
       <StyledCharacter>
         <div className="infoWrapper">
           <h1 className="title">{character.name}</h1>

@@ -29,6 +29,10 @@ const StyledEpisode = styled.div`
     align-items: center;
   }
 
+  .parameterWrapper + .parameterWrapper {
+    margin-top: 20px;
+  }
+
   .parameterName {
     color: greenyellow;
   }
@@ -41,7 +45,7 @@ const StyledEpisode = styled.div`
 
 export default function({ episode }) {
   return (
-    <MainWrapper pageTitle="Episode page">
+    <MainWrapper pageTitle={`Episode ${episode.name} from Rick & Morty`}>
       <StyledEpisode>
         <div className="titleWrapper">
           <h1>Episode "{episode.name}"</h1>
