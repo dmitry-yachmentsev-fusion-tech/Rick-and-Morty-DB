@@ -7,6 +7,7 @@ import Rating from '../components/Rating';
 import NotesForm from '../components/NotesForm';
 import CustomButton from '../components/Button';
 import { setRating, setNotes } from '../redux/feedback/reducer';
+import { deleteAllTodosFromDB } from '../API/todo/delete';
 
 const StyledForm = styled.form`
   background-color: #fff;
@@ -24,17 +25,6 @@ const StyledForm = styled.form`
   }
 
   .inputsWrapper {
-    margin-top: 20px;
-  }
-
-  .input {
-    width: 100%;
-    padding: 15px 10px;
-    border: 1px solid orange;
-    outline: none;
-  }
-
-  .input + .input {
     margin-top: 20px;
   }
 
@@ -68,20 +58,25 @@ const FeedbackForm = () => {
   } = useForm({
     mode: 'onBlur',
   });
-
-  const submitFeedback = data => {
-    const requestPayload = {
-      firstname: data.firstName,
-      lastname: data.lastName,
-      rating,
-      notes,
-    };
-    
-    console.log('requestPayload', requestPayload);
-    
-    dispatch(setRating(null));
-    dispatch(setNotes([]));
-    reset();
+  
+  const submitFeedback = async(data) => {
+    try {
+      await deleteAllTodosFromDB();
+      const requestPayload = {
+        firstname: data.firstName,
+        lastname: data.lastName,
+        rating,
+        notes,
+      };
+      
+      console.log('requestPayload', requestPayload);
+      
+      dispatch(setRating(null));
+      dispatch(setNotes([]));
+      reset();
+    } catch(err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -118,7 +113,11 @@ const FeedbackForm = () => {
         <Rating />
       </div>
       <NotesForm />
-      <CustomButton text="Submit" marginTop="40" />
+      <CustomButton 
+        type="submit" 
+        text="Submit" 
+        marginTop="40"
+      />
     </StyledForm>
   )
 };
