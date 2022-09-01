@@ -10,7 +10,7 @@ width: 100%;
 
   .input {
     width: 100%;
-    padding: 15px 10px;
+    padding: 10px;
     border: 1px solid orange;
     outline: none;
   }

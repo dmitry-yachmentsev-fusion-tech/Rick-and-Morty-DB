@@ -14,12 +14,12 @@ const StyledButton = styled.button`
   }
 }
 `
-const Button = ({ text, onClick, isDisabled, ...props }) => {
+const Button = ({ type, text, onClick, isDisabled, ...props }) => {
   return (
     <StyledButton
       marginLeft={props.marginLeft}
       marginTop={props.marginTop}
-      type="submit" 
+      type={type || 'button'} 
       onClick={onClick} 
       disabled={isDisabled}
     >

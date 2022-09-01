@@ -1,8 +1,8 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-import { Star } from './icons/Star';
+import StarIcon from './icons/StarIcon';
 import { setRating } from '../redux/feedback/reducer';
 
 const RateWrapper = styled.div`
@@ -80,7 +80,10 @@ const Rating = () => {
               key={index}
               onClick={() => selectRate(index)}
             >
-              <Star fill={selected ? "gold" : "white"} stroke={selected ? "gold" : "black"} />
+              <StarIcon 
+                fill={selected ? 'gold' : 'white'} 
+                stroke={selected ? 'gold' : 'black'}
+              />
             </button>
         )
       })}
